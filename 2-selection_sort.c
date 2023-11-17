@@ -11,14 +11,18 @@ void selection_sort(int *array, size_t size)
 {
 	size_t i, j, lowest, temp;
 
-	for (i = 0; i < size - 1; i++)
+	i = 0;
+
+	while (i < size - 1)
 	{
 		lowest = i;
+		j = i + 1;
 
-		for (j = i + 1; j < size; j++)
+		while (j < size)
 		{
 			if (array[j] < array[lowest])
 				lowest = j;
+			j++;
 		}
 		if (lowest != i)
 		{
@@ -27,5 +31,6 @@ void selection_sort(int *array, size_t size)
 			array[lowest] = temp;
 			print_array(array, size);
 		}
+		i++;
 	}
 }
