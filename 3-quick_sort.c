@@ -44,7 +44,7 @@ void l_sort(int arr[], int start, int end, size_t size)
  * @size: size of array
  * Return: position of pivot
  */
-size_t partition(int arr[], int start, int end, size_t size)
+int partition(int arr[], int start, int end, size_t size)
 {
 	int pivot = arr[end], i = start, j, temp, temp2;
 
