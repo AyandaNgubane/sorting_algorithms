@@ -26,6 +26,6 @@ int partition(int arr[], int start, int end, size_t size);
 void l_sort(int arr[], int start, int end, size_t size);
 void quick_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
-void swap(listint_t *sorted, listint_t *unsorted);
+void swap(listint_t *node, listint_t *node2);
 
 #endif

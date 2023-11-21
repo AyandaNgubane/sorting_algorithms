@@ -8,7 +8,7 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *temp = NULL, *unsorted = NULL, *sorted = NULL;
+	listint_t *temp = NULL, *right = NULL, *left = NULL;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
@@ -17,19 +17,19 @@ void insertion_sort_list(listint_t **list)
 	{
 		if (temp->n > temp->next->n)
 		{
-			unsorted = temp->next;
-			swap(temp, unsorted);
-			if (unsorted->prev == NULL)
-				*list = unsorted;
+			right = temp->next;
+			swap(temp, right);
+			if (right->prev == NULL)
+				*list = right;
 			print_list((const listint_t *) *list);
-			while (unsorted->prev != NULL)
+			while (right->prev != NULL)
 			{
-				if (unsorted->n >= unsorted->prev->n)
+				if (right->prev->n <= right->n)
 					break;
-				sorted = unsorted->prev;
-				swap(sorted, unsorted);
-				if (unsorted->prev == NULL)
-					*list = unsorted;
+				left = right->prev;
+				swap(left, right);
+				if (right->prev == NULL)
+					*list = right;
 				print_list((const listint_t *) *list);
 			}
 		}
@@ -40,18 +40,18 @@ void insertion_sort_list(listint_t **list)
 
 /**
  * swap - swaps two nodes
- * @sorted: node on the left
- * @unsorted: node on the right
+ * @node: node to swap
+ * @node2: node to swap
  * Return: void
  */
-void swap(listint_t *sorted, listint_t *unsorted)
+void swap(listint_t *node, listint_t *node2)
 {
-	if (sorted->prev != NULL)
-		sorted->prev->next = unsorted;
-	if (unsorted->next != NULL)
-		unsorted->next->prev = sorted;
-	sorted->next = unsorted->next;
-	unsorted->prev = sorted->prev;
-	sorted->prev = unsorted;
-	unsorted->next = sorted;
+	if (node->prev != NULL)
+		node->prev->next = node2;
+	if (node2->next != NULL)
+		node2->next->prev = node;
+	node->next = node2->next;
+	node2->prev = node->prev;
+	node->prev = node2;
+	node2->next = node;
 }
